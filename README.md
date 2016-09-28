@@ -4,8 +4,8 @@ Supports
 
 - Webpack
 - Material UI
-- Module live reload
-- Hot module reload with state
+- Hot Module replacement
+- React Hotloading (persists state)
 - Recommended folder structure for a react.js webapp project 
 
 ### How to start running
