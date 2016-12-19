@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, hashHistory} from 'react-router';
+import {browserHistory,Router, Route,IndexRoute, hashHistory} from 'react-router';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -8,11 +8,20 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import Home from './views/home';
-
+import NewsGetterComponent from 'NewsGetterComponent';
+import NavComponent from 'NavComponent';
+import LoginContainer from  'webclient/components/LoginContainer';
+import SignupContainer from 'webclient/components/SignUpContainer';
+import MainComponent from 'webclient/components/MainComponent';
 ReactDOM.render(
-	<MuiThemeProvider>
+
+	 <MuiThemeProvider>
 		<Router history={hashHistory}>
-			<Route path="/" component={Home} />
+			<Route path="/" component={MainComponent}>
+			<IndexRoute component={NewsGetterComponent}/>
+			<Router path="/login" component={LoginContainer}/>
+			<Router path="/signup" component={SignupContainer}/>
+			</Route>
 		</Router>
 	</MuiThemeProvider>,
   	document.getElementById('mountapp')

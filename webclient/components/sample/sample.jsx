@@ -12,25 +12,25 @@ export default class Sample extends React.Component {
 			company: ''
 		}
 	}
-	
+
 	handleNameState (event) {
 		this.setState({ name: event.target.value });
 	}
-		
+
 	handleAgeState (event) {
 		this.setState({ age: event.target.value });
 	}
-	
+
 	handleGenderState (event) {
 		this.setState({ gender: event.target.value });
 	}
-		
+
 	handleCompanyState (event) {
 		this.setState({ company: event.target.value });
 	}
-	
+
 	render () {
-		return (    	
+		return (
 			<div>
 				<h1>Hello {this.props.message}</h1>
 				<TextField floatingLabelText="Name" onChange={this.handleNameState.bind(this)} value={this.state.name}/>

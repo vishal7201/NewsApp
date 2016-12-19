@@ -1,27 +1,61 @@
 var path = require('path');
 var webpack = require('webpack');
-var webpackDevServer = require('webpack-dev-server');
+var express = require('express');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
+var config = require('./webpack.config');
+var index = require('./webserver/routes/index');
+var signup =require('./webserver/routes/signup');
+var login =require('./webserver/routes/login');
 
-var wpackConfig = require("./webpack.config");
+var app = express();
+var compiler = webpack(config);
 
-//Use 0.0.0.0, so that this can bind to any network interfaces (IP Address)
-wpackConfig.entry.app.unshift(
-  "webpack-dev-server/client?http://0.0.0.0:8080/",
-  "webpack/hot/dev-server");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use('/', express.static(path.join(__dirname, './webclient/')));
 
-wpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
 
-var wpackCompiler = webpack(wpackConfig);
+//Mongoose
+var db = 'mongodb://localhost/test';
+mongoose.connect(db);
 
-var wpackServer = new webpackDevServer(wpackCompiler, {
-  contentBase: path.join(__dirname, 'webclient'),
-  publicPath: wpackConfig.output.publicPath,
-  hot: true
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    console.log("connnected with mongo");
 });
-wpackServer.listen(8080, '0.0.0.0', function(err, result) {
-  if (err) {
-    console.error("Error ", err);
-  }
 
-  console.log("Server started at 8080");
+
+
+//Ruotes
+app.use('/', index);
+app.use('/signup',signup);
+app.use('/login',login);
+
+app.use(webpackDevMiddleware(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath,
+    stats: {
+        colors: true
+    },
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    }
+}));
+
+app.use(webpackHotMiddleware(compiler));
+
+
+
+//Listening to port 8090
+app.listen(8090, '0.0.0.0', function(err, result) {
+    if (err) {
+        console.error("Error ", err);
+    }
+
+    console.log("Server started at 8090");
 });

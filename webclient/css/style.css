@@ -1,0 +1,43 @@
+#mountapp{
+}
+.searchBox{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#newsCard{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 50px;
+  margin-right: 50px
+}
+.navnFooter{
+  background-color: #887878;
+}
+footer a{
+  color:white;
+}
+.container {
+  margin: 0 auto;
+  text-align: center;
+  width: 90%;
+}
+
+.card-heading {
+  padding: 16px;
+}
+
+.field-line, .button-line {
+  padding: 16px;
+}
+
+.error-message {
+  padding: 0 16px;
+  color: tomato;
+}
+
+.success-message {
+  padding: 0 16px;
+  color: green;
+}
