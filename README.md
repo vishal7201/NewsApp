@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## React Boilerplate
 
 Supports
@@ -18,3 +19,7 @@ To install the required dependencies
 To run the app
  	
 	$ npm run serv
+=======
+# NewsApp
+Application to fetch news by provider via endpoints provided by https://newsapi.org/
+>>>>>>> be9950f6ba7d69214b8c230763cdf47b25ca1a0a
