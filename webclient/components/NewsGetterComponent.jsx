@@ -25,6 +25,7 @@ export default class NewGetterComponent extends React.Component{
     "justify-content": "center",
     "align-items": "center"
     }
+    var imgStyle={"padding-bottom":"5px"};
     var searchBoxClass='';
     if(this.state.isHome){
       searchBoxClass='searchBox';
@@ -33,6 +34,7 @@ export default class NewGetterComponent extends React.Component{
       <div>
       <div className={searchBoxClass}>
         <div style={style} >
+      {this.state.isHome?<div style={imgStyle}><img src="./images/logo.jpg"/></div>:" "}    
     <SearchContainer  onSearchInput={this.handleSearchInput}/>
     </div>
      </div>
