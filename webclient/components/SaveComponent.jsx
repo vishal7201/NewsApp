@@ -24,8 +24,22 @@ export default class SaveComponent extends React.Component {
   };
 
   saveNewsArticle=()=>{
-    var url=Config.url+'/'
-    Axios.post()
+    var url=Config.url+'/save';
+    console.log(this.props.newsArticle);
+    Axios.post(url,{newsArticle:this.props.newsArticle,username:this.props.username,comments:this.refs.comments.getValue()})
+    .then(function(response){
+      if(response.data.saved===true){
+        alert('News Saved');
+      }
+      else{
+        alert('Error in saving')
+      }
+      console.log(response);
+    }.bind(this))
+    .catch(function(error){
+      alert(error);
+    })
+    this.handleClose();
   };
 
   render() {

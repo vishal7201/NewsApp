@@ -6,6 +6,7 @@ export default class Nav extends React.Component {
   render() {
     return (
       <Navbar className='navnFooter' brand='Digital News' right>
+        <NavItem><Link to="/savedNews">Saved News</Link></NavItem>
         <NavItem><Link to="/login">Login</Link></NavItem>
         <NavItem><Link to="/signup">SignUp</Link></NavItem>
       </Navbar>

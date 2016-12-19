@@ -42,7 +42,7 @@ export default class DisplayNewsComponent extends React.Component{
       {news.description}
     </CardText>
     <CardActions>
-      <SaveComponent style={style} newsArticle={news}/>
+      <SaveComponent style={style} newsArticle={news} username="admin@admin.com"/>
       <RaisedButton label="View More" href={news.url}  style={style} />
     </CardActions>
   </Card>
