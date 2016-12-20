@@ -1,26 +1,51 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
-import IconButton from 'material-ui/IconButton';
-
+import AutoComplete from 'material-ui/AutoComplete';
+import Axios from 'axios';
 
 export default class SearchContainer extends React.Component{
   constructor(props)
   {
     super(props);
+    this.newsSourceIds=[];
+    this.newsSourceName=[];
     this.getSearchInput=this.getSearchInput.bind(this);
+    this.passSearchData=this.passSearchData.bind(this);
+    this.searchText="";
+
   }
+  componentDidMount(){
+    const NEWS_API_URL='https://newsapi.org/v1/sources?language=en';
+    Axios.get(NEWS_API_URL).then((response)=>{
+      response.data.sources.forEach((source)=>{
+        this.newsSourceIds.push(source.id);
+        this.newsSourceName.push(source.name);
+
+      })
+    }).catch((error)=>{
+      alert(error)
+    });
+    }
+    getSearchInput(input){
+      this.searchText=input;
+    }
+    passSearchData(){
+      if(this.searchText!="")
+      {
+      var sourceIdIndex=this.newsSourceName.indexOf(this.searchText);
+      this.props.onSearchInput(this.newsSourceIds[sourceIdIndex]);
+    }
+    }
   render(){
     return(
-    <div>
-      <TextField placeholder="Enter news source" ref="newsSource"/>
-      <FlatButton label="Get News" primary={true} onClick={this.getSearchInput} />
-    </div>
+    <AutoComplete
+    floatingLabelText="Search News by provider"
+    filter={AutoComplete.fuzzyFilter}
+    dataSource={this.newsSourceName}
+    maxSearchResults={5}
+    onUpdateInput={this.getSearchInput}
+    onClose={this.passSearchData}
+  />
   );
-  }
-  getSearchInput(){
-    var newsSource=this.refs.newsSource.getValue()
-    this.props.onSearchInput(newsSource);
   }
 }

@@ -10,6 +10,8 @@ var index = require('./webserver/routes/index');
 var signup =require('./webserver/routes/signup');
 var login =require('./webserver/routes/login');
 var saveNews=require('./webserver/routes/saveNews');
+var savedNews=require('./webserver/routes/savedNews');
+
 
 var app = express();
 var compiler = webpack(config);
@@ -30,13 +32,12 @@ db.once('open', function() {
 });
 
 
-
 //Ruotes
 app.use('/', index);
 app.use('/signup',signup);
 app.use('/login',login);
 app.use('/save',saveNews);
-
+app.use('/savedNews',savedNews);
 app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath,

@@ -53,7 +53,6 @@ export default class SaveComponent extends React.Component {
         label="Save"
         primary={true}
         onTouchTap={this.saveNewsArticle}
-
       />,
     ];
 

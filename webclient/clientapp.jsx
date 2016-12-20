@@ -12,7 +12,9 @@ import NewsGetterComponent from 'NewsGetterComponent';
 import NavComponent from 'NavComponent';
 import LoginContainer from  'webclient/components/LoginContainer';
 import SignupContainer from 'webclient/components/SignUpContainer';
+import SavedNewsComponent from 'webclient/components/SavedNewsComponent'
 import MainComponent from 'webclient/components/MainComponent';
+
 ReactDOM.render(
 
 	 <MuiThemeProvider>
@@ -21,6 +23,7 @@ ReactDOM.render(
 			<IndexRoute component={NewsGetterComponent}/>
 			<Router path="/login" component={LoginContainer}/>
 			<Router path="/signup" component={SignupContainer}/>
+			<Router path="/savedNews" component={SavedNewsComponent}/>
 			</Route>
 		</Router>
 	</MuiThemeProvider>,

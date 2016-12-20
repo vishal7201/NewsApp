@@ -5,7 +5,6 @@ import SaveComponent from './SaveComponent'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import{Row,Col} from 'react-materialize'
 
 export default class DisplayNewsComponent extends React.Component{
   constructor(props){
@@ -31,7 +30,7 @@ export default class DisplayNewsComponent extends React.Component{
        var that=this;
         item=this.props.newsData.data.articles.map(function(news,index){
           return(
-            <Row>
+
              <Card  id='newsCard' key={index}>
                 <CardMedia
       overlay={<CardTitle title={news.title} subtitle={news.publishedAt} />}
@@ -46,7 +45,7 @@ export default class DisplayNewsComponent extends React.Component{
       <RaisedButton label="View More" href={news.url}  style={style} />
     </CardActions>
   </Card>
-</Row>)
+)
 });
 return(<div>{item}</div>)
   }

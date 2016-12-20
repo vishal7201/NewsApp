@@ -34,7 +34,7 @@ export default class NewGetterComponent extends React.Component{
       <div>
       <div className={searchBoxClass}>
         <div style={style} >
-      {this.state.isHome?<div style={imgStyle}><img src="./images/logo.jpg"/></div>:" "}    
+      {this.state.isHome?<div style={imgStyle}><img src="./images/logo.jpg"/></div>:" "}
     <SearchContainer  onSearchInput={this.handleSearchInput}/>
     </div>
      </div>
