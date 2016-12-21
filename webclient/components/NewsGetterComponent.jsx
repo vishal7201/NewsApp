@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
-
+import CircularProgress from 'material-ui/CircularProgress';
 import SearchContainer from 'SearchContainer'
 import DisplayNewsComponent from 'DisplayNewsComponent'
 import NavComponent from 'NavComponent'

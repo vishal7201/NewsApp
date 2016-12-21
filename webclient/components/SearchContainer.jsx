@@ -10,8 +10,6 @@ export default class SearchContainer extends React.Component{
     super(props);
     this.newsSourceIds=[];
     this.newsSourceName=[];
-    this.getSearchInput=this.getSearchInput.bind(this);
-    this.passSearchData=this.passSearchData.bind(this);
     this.searchText="";
     this.state={
       searchProgress:false
@@ -29,28 +27,22 @@ export default class SearchContainer extends React.Component{
       alert(error)
     });
     }
-    getSearchInput(input){
-      this.searchText=input;
-    }
-    passSearchData(){
-      if(this.searchText!="")
-      {
-      var sourceIdIndex=this.newsSourceName.indexOf(this.searchText);
-      this.setState({searchProgress:true});
-      this.props.onSearchInput(this.newsSourceIds[sourceIdIndex]);
-    }
+    getSearchData(value,index){
+      this.props.onSearchInput(this.newsSourceIds[index]);
     }
   render(){
+    var style={
+      width:"100%"
+    }
     return(
       <div>
     <AutoComplete
+    textFieldStyle={style}
     floatingLabelText="Search News by provider"
     filter={AutoComplete.fuzzyFilter}
     dataSource={this.newsSourceName}
     maxSearchResults={5}
-    onUpdateInput={this.getSearchInput}
-    onClose={this.passSearchData}
-  />
+    onNewRequest={this.getSearchData.bind(this)}    />
 {this.state.searchProgress?<CircularProgress size={40} thickness={7}/>:""}
 </div>
   );

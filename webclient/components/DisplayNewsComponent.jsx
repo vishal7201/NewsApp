@@ -20,11 +20,12 @@ export default class DisplayNewsComponent extends React.Component{
 
   render(){
     const style = {
-  margin: 12,
+  fontSize:"20px",
+  color:"#424242"
 };
     var item;
     if(this.props.error!=null){
-      return (<p>{this.props.error}</p>)
+      return (<p></p>)
     }
     else{
        var that=this;
@@ -37,12 +38,12 @@ export default class DisplayNewsComponent extends React.Component{
         >
       <img height="350px"  src={news.urlToImage} />
     </CardMedia>
-    <CardText>
-      {news.description}
+    <CardText style={style}>
+      {`"${news.description}"`}
     </CardText>
     <CardActions>
-      <SaveComponent style={style} newsArticle={news} username="admin@admin.com"/>
-      <RaisedButton label="View More" href={news.url}  style={style} />
+      <SaveComponent newsArticle={news} username="admin@admin.com"/>
+      <RaisedButton    label="View More" href={news.url}  />
     </CardActions>
   </Card>
 )

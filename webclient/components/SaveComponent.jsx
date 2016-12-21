@@ -55,10 +55,13 @@ export default class SaveComponent extends React.Component {
         onTouchTap={this.saveNewsArticle}
       />,
     ];
-
+    const style = {
+  margin: 12,
+  display:"inline"
+};
     return (
-      <div>
-        <RaisedButton label="Save" onTouchTap={this.handleOpen} />
+      <div style={style} >
+        <RaisedButton  label="Save" onTouchTap={this.handleOpen} />
         <Dialog
           title={this.props.newsArticle.title}
           actions={actions}

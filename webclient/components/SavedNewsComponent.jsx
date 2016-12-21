@@ -29,7 +29,7 @@ export default class SavedNewsComponent extends React.Component{
     Axios.get(url).then((response)=>{
         if(response.data.length==0)
         {
-
+                  
 
         }
           this.setState({savedNews:response.data});
@@ -97,7 +97,7 @@ var items=this.state.savedNews.map((news,index)=>{
 <CardText style={style} >{this.state.id===news._id?
     <form onSubmit={this.handleComment}>
       <TextField ref="comments"
-         fullWidth="true" defaultValue={news.comments}
+         fullWidth="true"defaultValue={news.comments}
          floatingLabelText="Comments"/>
      </form>:news.comments}</CardText>
   <CardActions>
