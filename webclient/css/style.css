@@ -1,5 +1,3 @@
-#mountapp{
-}
 .searchBox{
   position: fixed;
   top: 50%;
@@ -9,15 +7,10 @@
 #newsCard{
   margin-top: 20px;
   margin-bottom: 20px;
-  margin-left: 50px;
-  margin-right: 50px
+  margin-left: 15%;
+  margin-right: 15%;
 }
-.navnFooter{
-  background-color: #887878;
-}
-footer a{
-  color:white;
-}
+
 .container {
   margin: 0 auto;
   text-align: center;

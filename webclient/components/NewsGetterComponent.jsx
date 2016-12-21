@@ -20,12 +20,12 @@ export default class NewGetterComponent extends React.Component{
   render(){
     var style={
       "display": "flex",
-    "flex-direction": "row",
-    "flex-wrap": "wrap",
-    "justify-content": "center",
-    "align-items": "center"
+    "flexDirection": "row",
+    "flexWrap": "wrap",
+    "justifyContent": "center",
+    "alignItems": "center"
     }
-    var imgStyle={"padding-bottom":"5px"};
+    var imgStyle={"paddingBottom":"5px"};
     var searchBoxClass='';
     if(this.state.isHome){
       searchBoxClass='searchBox';
