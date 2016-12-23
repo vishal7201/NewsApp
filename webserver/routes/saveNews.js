@@ -1,65 +1,86 @@
-var express=require('express')
-var mongoose=require('mongoose')
-var News=require('../models/news');
+const express = require('express');
+const News = require('../models/news');
 
-var router =express.Router();
-router.get('/',(req,res)=>{
-  res.send("hello");
-})
-
-router.post('/',function(req,res){
-
-    var username=req.body.username;
-    var newsArticle=req.body.newsArticle;
-    var comments=req.body.comments;
-    var news=new News({username:username,newsArticle:newsArticle,comments:comments});
-  news.save((error)=>{
-    if(error){
-      res.json({'saved':false,error:error});
-    }
-    else{
-      res.json({'saved':true});
-    }
-  })
+let router = express.Router();
+router.get('/', (req, res) => {
+    res.send('hello');
 });
 
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated())
+        return next();
+        res.json({redirect:true});
+  }
 
-router.put('/',function(req,res){
-  console.log("put");
-  var newsId=req.body.newsId;
-  var comments=req.body.comments;
-  News.findById({_id:newsId},function(error,data){
-    if(error){
-    res.json({"updated":false,"error":error});
-    }
-    else{
-      data.comments=comments;
-      data.save(function(err){
-        if(err){
-          console.log("Error in save update");
-          res.json({"updated":false,"error":error})
+
+router.post('/', isLoggedIn, function(req, res) {
+    let username = req.body.username;
+    let newsArticle = req.body.newsArticle;
+    let comments = req.body.comments;
+    let news = new News({
+        username: username,
+        newsArticle: newsArticle,
+        comments: comments
+    });
+    news.save((error) => {
+        if (error) {
+            res.json({
+                saved: false,
+                error: error
+            });
+        } else {
+            res.json({
+                saved: true
+            });
         }
-        else{
-          res.json({"updated":true})
+    });
+});
+
+router.put('/', isLoggedIn, function(req, res) {
+    let newsId = req.body.newsId;
+    let comments = req.body.comments;
+    News.findById({
+        _id: newsId
+    }, function(error, data) {
+        if (error) {
+            res.json({
+                updated: false,
+                error: error
+            });
+        } else {
+            data.comments = comments;
+            data.save(function(err) {
+                if (err) {
+                    console.log('Error in save update');
+                    res.json({
+                        updated: false,
+                        error: error
+                    })
+                } else {
+                    res.json({
+                        updated: true
+                    })
+                }
+            })
         }
-      })
-    }
-  })
+    })
 });
 
-router.route('/:newsId').delete(function(req,res){
-  console.log(req.params.newsId);
-  News.remove({_id:req.params.newsId}, function(err) {
-    if (err) {
-      res.json({"deleted":err});
-    }
-    else{
-      res.json({"deleted":true});
-    }
-
+router.route('/:newsId').delete(function(req, res) {
+    News.remove({
+        _id: req.params.newsId
+    }, function(err) {
+        if (err) {
+            res.json({
+                deleted: err
+            });
+        } else {
+            res.json({
+                deleted: true
+            });
+        }
+    });
 });
 
-})
 
-
-module.exports=router;
+module.exports = router;

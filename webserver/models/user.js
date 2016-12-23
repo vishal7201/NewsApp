@@ -1,11 +1,10 @@
-var mongoose =require('mongoose');
+const mongoose = require('mongoose');
 
-var userSchema =mongoose.Schema({
-  email:String,
-  name:String,
-  password:String
+let userSchema = mongoose.Schema({
+    username: String,
+    password: String
 });
 
-var User= mongoose.model('User',userSchema);
+let User = mongoose.model('User', userSchema);
 
-module.exports=User;
+module.exports = User;

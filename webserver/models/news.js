@@ -1,11 +1,11 @@
-var mongoose= require('mongoose');
+const mongoose = require('mongoose');
 
-var newsSchema=mongoose.Schema({
-  username:String,
-  newsArticle:Object,
-  comments:String
+let newsSchema = mongoose.Schema({
+    username: String,
+    newsArticle: Object,
+    comments: String
 });
 
-var News=mongoose.model("News",newsSchema);
+let News = mongoose.model('News', newsSchema);
 
-module.exports=News;
+module.exports = News;

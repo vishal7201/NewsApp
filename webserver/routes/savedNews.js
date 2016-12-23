@@ -1,16 +1,23 @@
-var express=require('express');
-var mongoose=require('mongoose');
-var News=require('../models/news.js');
+const express = require('express');
+const News = require('../models/news.js');
 
-var router =express.Router();
+let router = express.Router();
 
-router.get('/',((req,res)=>{
-    var username=req.query.username;
-    News.find({username:username},function(err,userNews){
-      if(err){
-        res.json(error);
-      }
-      res.json(userNews);
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated())
+        return next();
+        res.json({redirect:true});
+}
+
+router.get('/', isLoggedIn, (req, res) => {
+    let username = req.query.username;
+    News.find({
+           username: username
+    }, function(err, userNews) {
+        if (err) {
+            res.json(err);
+        }
+        res.json(userNews);
     });
-}));
-module.exports=router;
+});
+module.exports = router;

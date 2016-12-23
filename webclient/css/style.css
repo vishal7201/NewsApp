@@ -1,36 +1,37 @@
-.searchBox{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.searchBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-#newsCard{
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 15%;
-  margin-right: 15%;
+
+#newsCard {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 .container {
-  margin: 0 auto;
-  text-align: center;
-  width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    width: 90%;
 }
 
 .card-heading {
-  padding: 16px;
+    padding: 16px;
 }
 
 .field-line, .button-line {
-  padding: 16px;
+    padding: 16px;
 }
 
 .error-message {
-  padding: 0 16px;
-  color: tomato;
+    padding: 0 16px;
+    color: tomato;
 }
 
 .success-message {
-  padding: 0 16px;
-  color: green;
+    padding: 0 16px;
+    color: green;
 }
